@@ -19,17 +19,18 @@ register_nav_menus( array(
 
 Now, you can display the menu in your theme via below PHP code addition in the **header.php** file of your theme.
 ```php
-<nav class="main-navigation navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="<?php esc_html_e( 'Toggle Navigation', 'theme-textdomain' ); ?>">
-            <span class="navbar-toggle-image navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="navbar-contents collapse navbar-collapse" id="navbar-content">
+        <div class="collapse navbar-collapse" id="navbar-content">
             <?php
             wp_nav_menu( array(
                 'theme_location' => 'menu-1',
                 'menu_id'        => 'primary-menu',
                 'container'      => false,
+                'depth'          => 2,
                 'menu_class'     => 'navbar-nav ml-auto',
                 'walker'         => new Bootstrap_NavWalker(),
                 'fallback_cb'    => 'Bootstrap_NavWalker::fallback',
