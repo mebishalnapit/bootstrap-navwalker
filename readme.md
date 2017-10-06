@@ -39,7 +39,3 @@ Now, you can display the menu in your theme via below PHP code addition in the *
         </div>
 </nav>
 ```
-
-## CHANGELOG
-#### VERSION 0.1
-* Initial Release

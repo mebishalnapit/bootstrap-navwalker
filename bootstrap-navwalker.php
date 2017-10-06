@@ -7,7 +7,6 @@
  * Author URI: https://napitwptech.com/
  * GitHub URI: https://github.com/mebishalnapit/bootstrap-navwalker/
  * Description: A custom WordPress nav walker class to implement the Bootstrap 4 navigation style in a custom WordPress Bootstrap based theme using the WordPress built in menu manager.
- * Version: 0.1
  * License: GPL-3.0
  * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
  */
@@ -346,7 +345,7 @@ class Bootstrap_NavWalker extends Walker_Nav_Menu {
 	 *
 	 * @param $args Arrays passed from the wp_nav_menu function
 	 */
-	public function fallback( $args ) {
+	public static function fallback( $args ) {
 		if ( current_user_can( 'edit_theme_options' ) ) {
 			$container       = $args[ 'container' ];
 			$container_id    = $args[ 'container_id' ];
