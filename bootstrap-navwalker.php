@@ -270,6 +270,14 @@ class Bootstrap_NavWalker extends Walker_Nav_Menu {
 		foreach ( $atts as $attr => $value ) {
 			if ( ! empty( $value ) ) {
 				$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+
+				/**
+				 * If '.disabled' class is added to the menu, add the url of '#' in it
+				 */
+				if ( in_array( 'disabled', $item->classes ) ) {
+					$value = ( 'href' === $attr ) ? esc_url( '#' ) : esc_attr( $value );
+				}
+
 				$attributes .= ' ' . $attr . '="' . $value . '"';
 			}
 		}
