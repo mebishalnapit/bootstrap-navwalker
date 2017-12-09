@@ -7,8 +7,8 @@
  * Author URI: https://napitwptech.com/
  * GitHub URI: https://github.com/mebishalnapit/bootstrap-navwalker/
  * Description: A custom WordPress nav walker class to implement the Bootstrap 4 navigation style in a custom WordPress Bootstrap based theme using the WordPress built in menu manager.
- * License: GPL-3.0
- * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
+ * License: GNU General Public License v3 or later
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
 class Bootstrap_NavWalker extends Walker_Nav_Menu {
 
@@ -132,9 +132,9 @@ class Bootstrap_NavWalker extends Walker_Nav_Menu {
 		$classes[] = 'nav-item';
 
 		/**
-		 * Add class '.active' inside <li> tag for Bootstrap active menu
+		 * Add class '.active' inside <li> tag for Bootstrap active menu as well as for the parent menu, which have the active sub-menu
 		 */
-		if ( in_array( 'current-menu-item', $classes ) ) {
+		if ( in_array( 'current-menu-item', $classes ) || in_array( 'current-menu-parent', $classes ) ) {
 			$classes[] = 'active';
 		}
 
@@ -215,7 +215,7 @@ class Bootstrap_NavWalker extends Walker_Nav_Menu {
 		 * 6. Add the '#' link in the <a> tag in the parent menu if it has sub-menu as required for Bootstrap
 		 */
 		if ( $depth === 0 && in_array( 'menu-item-has-children', $classes ) ) {
-			$atts[ 'class' ] .= ' dropdown-toggle';
+			$atts[ 'class' ]         .= ' dropdown-toggle';
 			$atts[ 'data-toggle' ]   = 'dropdown';
 			$atts[ 'id' ]            = 'navbar-dropdown-menu-link-' . $item->ID;
 			$atts[ 'aria-haspopup' ] = "true";
