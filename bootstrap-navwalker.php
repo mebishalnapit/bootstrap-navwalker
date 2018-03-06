@@ -6,8 +6,8 @@
  * Author: Bishal Napit
  * Author URI: https://napitwptech.com/
  * GitHub URI: https://github.com/mebishalnapit/bootstrap-navwalker/
- * Description: A custom WordPress nav walker class to implement the Bootstrap 4 navigation style in a custom WordPress Bootstrap based theme using the WordPress built in menu manager.
- * License: GNU General Public License v3 or later
+ * Description: A custom WordPress nav walker class to implement the Bootstrap 4 navigation style in a custom WordPress
+ * Bootstrap based theme using the WordPress built in menu manager. License: GNU General Public License v3 or later
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
 class Bootstrap_NavWalker extends Walker_Nav_Menu {
@@ -30,7 +30,7 @@ class Bootstrap_NavWalker extends Walker_Nav_Menu {
 		$current_menu_id = $this->current_menu_id_bootstrap;
 
 		// Assign the dynamic id for use inside the dropdown menu, ie, sub-menu for Bootstrap
-		$id = 'id="navbar-dropdown-menu-link-' . $current_menu_id->ID . '"';
+		$id = 'aria-labelledby="navbar-dropdown-menu-link-' . $current_menu_id->ID . '"';
 
 		if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
 			$t = '';
@@ -191,17 +191,17 @@ class Bootstrap_NavWalker extends Walker_Nav_Menu {
 			$output .= $indent . '<li' . $id . $class_names . '>';
 		}
 
-		$atts             = array();
-		$atts[ 'title' ]  = ! empty( $item->attr_title ) ? $item->attr_title : '';
-		$atts[ 'target' ] = ! empty( $item->target ) ? $item->target : '';
-		$atts[ 'rel' ]    = ! empty( $item->xfn ) ? $item->xfn : '';
-		$atts[ 'href' ]   = ! empty( $item->url ) ? $item->url : '';
+		$atts           = array();
+		$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
+		$atts['target'] = ! empty( $item->target ) ? $item->target : '';
+		$atts['rel']    = ! empty( $item->xfn ) ? $item->xfn : '';
+		$atts['href']   = ! empty( $item->url ) ? $item->url : '';
 
 		/**
 		 * Add '.nav-link' class for <a> in parent menu for Bootstrap
 		 */
 		if ( $depth === 0 ) {
-			$atts[ 'class' ] = 'nav-link';
+			$atts['class'] = 'nav-link';
 		}
 
 		/**
@@ -215,12 +215,12 @@ class Bootstrap_NavWalker extends Walker_Nav_Menu {
 		 * 6. Add the '#' link in the <a> tag in the parent menu if it has sub-menu as required for Bootstrap
 		 */
 		if ( $depth === 0 && in_array( 'menu-item-has-children', $classes ) ) {
-			$atts[ 'class' ]         .= ' dropdown-toggle';
-			$atts[ 'data-toggle' ]   = 'dropdown';
-			$atts[ 'id' ]            = 'navbar-dropdown-menu-link-' . $item->ID;
-			$atts[ 'aria-haspopup' ] = "true";
-			$atts[ 'aria-expanded' ] = "false";
-			$atts[ 'href' ]          = '#';
+			$atts['class']         .= ' dropdown-toggle';
+			$atts['data-toggle']   = 'dropdown';
+			$atts['id']            = 'navbar-dropdown-menu-link-' . $item->ID;
+			$atts['aria-haspopup'] = "true";
+			$atts['aria-expanded'] = "false";
+			$atts['href']          = '#';
 		}
 
 		/**
@@ -229,22 +229,22 @@ class Bootstrap_NavWalker extends Walker_Nav_Menu {
 		 * 2. Add the current menu id attribute if you want to style the menu differently
 		 */
 		if ( $depth > 0 ) {
-			$atts[ 'class' ] = 'dropdown-item';
-			$atts[ 'id' ]    = 'menu-item-' . $item->ID;
+			$atts['class'] = 'dropdown-item';
+			$atts['id']    = 'menu-item-' . $item->ID;
 		}
 
 		/**
 		 * Add '.active' class inside <a> in sub-menu for Bootstrap
 		 */
 		if ( in_array( 'current-menu-item', $item->classes ) ) {
-			$atts[ 'class' ] .= ' active';
+			$atts['class'] .= ' active';
 		}
 
 		/**
 		 * Add '.disabled' class for <a> in menu for Bootstrap disabled class
 		 */
 		if ( in_array( 'disabled', $item->classes ) ) {
-			$atts[ 'class' ] .= ' disabled';
+			$atts['class'] .= ' disabled';
 		}
 
 		/**
@@ -351,17 +351,19 @@ class Bootstrap_NavWalker extends Walker_Nav_Menu {
 
 	/**
 	 * Fallback menu
-	 * If you assign the fallback menu for your custom menu setup via wp_nav_menu function, then, this function will be rendered if no menu is assigned to that menu location. You need to assign it via 'fallback_cb' array. Also, this will be only rendered to the logged in users pointing them to the menu manager url.
+	 * If you assign the fallback menu for your custom menu setup via wp_nav_menu function, then, this function will be
+	 * rendered if no menu is assigned to that menu location. You need to assign it via 'fallback_cb' array. Also, this
+	 * will be only rendered to the logged in users pointing them to the menu manager url.
 	 *
 	 * @param $args Arrays passed from the wp_nav_menu function
 	 */
 	public static function fallback( $args ) {
 		if ( current_user_can( 'edit_theme_options' ) ) {
-			$container       = $args[ 'container' ];
-			$container_id    = $args[ 'container_id' ];
-			$container_class = $args[ 'container_class' ];
-			$menu_class      = $args[ 'menu_class' ];
-			$menu_id         = $args[ 'menu_id' ];
+			$container       = $args['container'];
+			$container_id    = $args['container_id'];
+			$container_class = $args['container_class'];
+			$menu_class      = $args['menu_class'];
+			$menu_id         = $args['menu_id'];
 
 			// If there is container render it
 			if ( $container ) {
